@@ -1,0 +1,365 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Date Responses ❤️</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- ===============================
+         RESULTS PAGE
+    ================================ -->
+
+    <main class="results-page">
+
+        <div class="results-card">
+
+
+            <!-- HEADER -->
+
+            <div class="results-header">
+
+                <div class="heart-icon">
+                    ♥
+                </div>
+
+                <h1>
+                    Her Answers
+                </h1>
+
+                <p>
+                    Here are the answers from the date questionnaire.
+                </p>
+
+            </div>
+
+
+            <!-- SUBMISSION STATUS -->
+
+            <div id="resultStatus"></div>
+
+
+            <!-- RESULTS -->
+
+            <div id="resultsContainer"></div>
+
+
+            <!-- ACTIONS -->
+
+            <div class="results-actions">
+
+                <button
+                    id="clearResults"
+                    class="danger-btn"
+                >
+                    Clear Answers
+                </button>
+
+
+                <button
+                    class="back-home-btn"
+                    onclick="window.location.href='index.html'"
+                >
+                    Back to App
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </main>
+
+
+    <!-- ===============================
+         JAVASCRIPT
+    ================================ -->
+
+    <script>
+
+        const resultsContainer =
+            document.getElementById(
+                "resultsContainer"
+            );
+
+
+        const resultStatus =
+            document.getElementById(
+                "resultStatus"
+            );
+
+
+        const clearResults =
+            document.getElementById(
+                "clearResults"
+            );
+
+
+        // Get saved result
+
+        const savedResult =
+            localStorage.getItem(
+                "dateResult"
+            );
+
+
+        let result = null;
+
+
+        try {
+
+            result =
+                savedResult
+                    ? JSON.parse(savedResult)
+                    : null;
+
+        } catch (error) {
+
+            result = null;
+
+        }
+
+
+        // ==================================
+        // QUESTIONS
+        // ==================================
+
+        const questions = [
+
+            "Would you go on a date with me?",
+
+            "What would you like our first date to be like?",
+
+            "What food would you like?",
+
+            "What would you like us to do together?",
+
+            "What would make the date special for you?",
+
+            "One last question..."
+
+        ];
+
+
+        // ==================================
+        // NO RESULTS
+        // ==================================
+
+        if (!result) {
+
+            resultStatus.innerHTML = `
+
+                <div class="no-results">
+
+                    <h2>
+                        No answers yet ❤️
+                    </h2>
+
+                    <p>
+                        Complete the questionnaire first.
+                    </p>
+
+                </div>
+
+            `;
+
+
+            clearResults.style.display =
+                "none";
+
+        }
+
+
+        // ==================================
+        // SHOW RESULTS
+        // ==================================
+
+        else {
+
+            resultStatus.innerHTML = `
+
+                <div class="submitted-box">
+
+                    <strong>
+                        Submitted:
+                    </strong>
+
+                    ${result.submittedAt}
+
+                </div>
+
+            `;
+
+
+            questions.forEach(
+                (question, index) => {
+
+                    const answer =
+                        result.answers[index];
+
+
+                    let answerText;
+
+
+                    if (
+                        Array.isArray(answer)
+                    ) {
+
+                        answerText =
+                            answer.join(", ");
+
+                    }
+
+                    else {
+
+                        answerText =
+                            answer || "No answer";
+
+                    }
+
+
+                    const item =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    item.classList.add(
+                        "result-item"
+                    );
+
+
+                    const number =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    number.classList.add(
+                        "result-number"
+                    );
+
+
+                    number.textContent =
+                        index + 1;
+
+
+                    const content =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    content.classList.add(
+                        "result-content"
+                    );
+
+
+                    const title =
+                        document.createElement(
+                            "h3"
+                        );
+
+
+                    title.textContent =
+                        question;
+
+
+                    const answerElement =
+                        document.createElement(
+                            "p"
+                        );
+
+
+                    answerElement.textContent =
+                        answerText;
+
+
+                    content.appendChild(
+                        title
+                    );
+
+                    content.appendChild(
+                        answerElement
+                    );
+
+
+                    item.appendChild(
+                        number
+                    );
+
+                    item.appendChild(
+                        content
+                    );
+
+
+                    resultsContainer.appendChild(
+                        item
+                    );
+
+                }
+            );
+
+        }
+
+
+        // ==================================
+        // CLEAR RESULTS
+        // ==================================
+
+        clearResults.addEventListener(
+            "click",
+            () => {
+
+                const confirmDelete =
+                    confirm(
+                        "Are you sure you want to delete these answers?"
+                    );
+
+
+                if (!confirmDelete) {
+
+                    return;
+
+                }
+
+
+                localStorage.removeItem(
+                    "dateResult"
+                );
+
+
+                localStorage.removeItem(
+                    "dateAnswers"
+                );
+
+
+                location.reload();
+
+            }
+        );
+
+    </script>
+
+
+</body>
+
+</html>

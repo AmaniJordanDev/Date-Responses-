@@ -1,0 +1,188 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>A Little Question For You ❤️</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Floating hearts -->
+    <div class="hearts">
+        <span>♥</span>
+        <span>♥</span>
+        <span>♥</span>
+        <span>♥</span>
+        <span>♥</span>
+        <span>♥</span>
+    </div>
+
+
+    <!-- Music -->
+    <audio id="music" loop>
+        <source src="Ayra Starr, ZAYN - Heaven Baby (Lyrics) [VH9IvaQMgv0].mp3" type="audio/mpeg">
+    </audio>
+
+
+    <button class="music-btn" id="musicBtn">
+        ♫ Music
+    </button>
+
+
+    <!-- HOME SCREEN -->
+    <section class="screen active" id="homeScreen">
+
+        <div class="home-card">
+
+            <div class="profile-wrapper">
+                <img
+                    src="profile.jpg"
+                    alt="My picture"
+                    class="profile-image"
+                >
+            </div>
+
+            <p class="small-text">
+                I have a little question for you...
+            </p>
+
+            <h1>
+                Hey Beautiful ❤️
+            </h1>
+
+            <p class="intro-text">
+                I made something small for you.
+                Take your time, choose honestly,
+                and let's see what our perfect date
+                could look like.
+            </p>
+
+            <button class="primary-btn" id="startBtn">
+                Let's Begin ❤️
+            </button>
+
+        </div>
+
+        
+
+    </section>
+
+
+    <!-- QUESTIONS SCREEN -->
+    <section class="screen" id="questionScreen">
+
+        <div class="question-card">
+
+            <div class="top-section">
+
+                <span id="questionNumber">
+                    Question 1 of 6
+                </span>
+
+                <div class="progress-container">
+                    <div
+                        class="progress-bar"
+                        id="progressBar"
+                    ></div>
+                </div>
+
+            </div>
+
+
+            <h2 id="questionText">
+                Would you go on a date with me?
+            </h2>
+
+
+            <p class="selection-hint" id="selectionHint">
+                Choose one answer
+            </p>
+
+
+            <div
+                class="options-container"
+                id="optionsContainer"
+            ></div>
+
+
+            <div class="navigation">
+
+                <button
+                    class="secondary-btn"
+                    id="backBtn"
+                >
+                    ← Home
+                </button>
+
+                <button
+                    class="primary-btn continue-btn"
+                    id="continueBtn"
+                >
+                    Continue →
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FINAL SCREEN -->
+    <section class="screen" id="finalScreen">
+
+        <div class="final-card">
+
+            <div class="final-heart">
+                ♥
+            </div>
+
+            <h1>
+                Thank You ❤️
+            </h1>
+
+            <p class="final-message">
+                Now I know a little more about
+                your perfect date.
+            </p>
+
+            <h2 class="summary-title">
+                Our Date Plan
+            </h2>
+
+            <div
+                class="summary-container"
+                id="finalSummary"
+            ></div>
+
+            <p class="saved-message">
+                Your answers have been saved on this device.
+            </p>
+
+            <button
+                class="primary-btn"
+                onclick="location.reload()"
+            >
+                Start Again
+            </button>
+
+        </div>
+
+      
+
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+      <script src="script.js"></script>
+
+
+   
+
+</body>
+</html>
