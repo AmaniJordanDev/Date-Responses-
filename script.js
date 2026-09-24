@@ -69,7 +69,7 @@ const questions = [
         options: [
             "Watch a movie 🎬",
             "Eat together 🍽️",
-            "Take a walk 🚶",
+            "have sex🚶",
             "Take pictures 📸",
             "Play games 🎮"
         ]
